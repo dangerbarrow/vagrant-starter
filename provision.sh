@@ -35,7 +35,7 @@ sudo apt-get update
 sudo apt-get install -y apache2
 # sudo apt-get install mysql-server
 # sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
-# sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-mcrypt debconf-utils # install apache2 and php5
+# sudo apt-get install -y apache2 php5 libapache2-mod-php5 php5-xml php5-mcrypt debconf-utils # install apache2 and php5
 # Required for WP User Photo plugin
 #sudo apt-get -y install php5-gd 
 echo ""
@@ -57,7 +57,7 @@ echo ""
 echo "***************************************************"
 echo "*** Installing PHP ***"
 echo "***************************************************"
-sudo apt-get install -y php libapache2-mod-php php-mcrypt php-mysql
+sudo apt-get install -y php libapache2-mod-php php-mcrypt php-mysql php-xml
 echo ""
 echo ""
 
@@ -82,6 +82,13 @@ ln -fs /vagrant/src /var/www # create a symlink for /vagrant from /var/www
 echo ""
 echo ""
 
+echo "***************************************************"
+echo "****************** Create Logs Directory ******************"
+echo "***************************************************"
+echo "CREATING DIRECTORY"
+sudo mkdir /vagrant/src/logs
+echo ""
+echo ""
 
 echo "***************************************************"
 echo "*************** Create Apache Vhost ***************"
@@ -101,6 +108,8 @@ cat >/etc/apache2/sites-available/$SERVER_NAME.conf <<EOL
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [QSA,L]
   </Directory>
+  ErrorLog /vagrant/src/logs/dev-error.log
+  CustomLog /vagrant/src/logs/dev-access.log combined
 </VirtualHost>
 EOL
 
@@ -129,7 +138,6 @@ echo "****************** Seed Database ******************"
 echo "***************************************************"
 echo "SEEDING DATABASE"
 #mysql -u root -pvagrant $DB_NAME < /vagrant/db.sql # load the schema and seed the new database from your production dump
-#TODO run cron to create current month's file
 echo ""
 echo ""
 
