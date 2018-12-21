@@ -41,12 +41,11 @@ Vagrant.configure(2) do |config|
   
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", "/vagrant", mount_options:["dmode=777","fmode=666"]
-  
+
   config.vm.network "forwarded_port", guest: 3306, host: 3306
-
-
+  
   config.vm.provider "virtualbox" do |vb|
-  vb.name = server_name
+    vb.name = server_name
     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
 
