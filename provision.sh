@@ -137,7 +137,7 @@ echo "***************************************************"
 echo "****************** Seed Database ******************"
 echo "***************************************************"
 echo "SEEDING DATABASE"
-#mysql -u root -pvagrant $DB_NAME < /vagrant/db.sql # load the schema and seed the new database from your production dump
+#mysql -u root -pvagrant $DB_NAME < /vagrant/db.sql # load the schema and seed the new database from your production export
 echo ""
 echo ""
 
