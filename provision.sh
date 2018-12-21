@@ -83,10 +83,11 @@ echo ""
 echo ""
 
 echo "***************************************************"
-echo "****************** Create Logs Directory ******************"
+echo "****************** Build Out Src Directory ******************"
 echo "***************************************************"
 echo "CREATING DIRECTORY"
 sudo mkdir /vagrant/src/logs
+sudo mkdir /vagrant/src/public_html
 echo ""
 echo ""
 
